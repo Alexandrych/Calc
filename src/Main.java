@@ -5,15 +5,15 @@ public class Main {
     static char operation;
 
     public static void main(String[] args) {
-        System.out.println("Калькулятор выполняет операции сложения, вычитания, умножения и деления с двумя целыми числами от 1 до 10");
-        System.out.println("Введите выражение арабскими или римскими числами");
+        System.out.println("РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ РІС‹РїРѕР»РЅСЏРµС‚ РѕРїРµСЂР°С†РёРё СЃР»РѕР¶РµРЅРёСЏ, РІС‹С‡РёС‚Р°РЅРёСЏ, СѓРјРЅРѕР¶РµРЅРёСЏ Рё РґРµР»РµРЅРёСЏ СЃ РґРІСѓРјСЏ С†РµР»С‹РјРё С‡РёСЃР»Р°РјРё РѕС‚ 1 РґРѕ 10");
+        System.out.println("Р’РІРµРґРёС‚Рµ РІС‹СЂР°Р¶РµРЅРёРµ Р°СЂР°Р±СЃРєРёРјРё РёР»Рё СЂРёРјСЃРєРёРјРё С‡РёСЃР»Р°РјРё");
         Scanner abc = new Scanner(System.in);
         String userInput = abc.nextLine();
         try {
             System.out.println(calc(userInput));
         }
         catch (NumberFormatException e){
-            System.err.println(e+" Неверный формат чисел");
+            System.err.println(e+" РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ С‡РёСЃРµР»");
         }
         catch (Exception e){
             System.err.println(e);
@@ -33,17 +33,17 @@ public class Main {
         }
         String[] blacks = input.split("[-+/*]");
         if (blacks.length < 2){
-            throw new Exception("Вы ввели не математическую операцию");
+            throw new Exception("Р’С‹ РІРІРµР»Рё РЅРµ РјР°С‚РµРјР°С‚РёС‡РµСЃРєСѓСЋ РѕРїРµСЂР°С†РёСЋ");
         }
         if (blacks.length > 2){
-            throw new Exception("Выражение не удовлетворяет заданию - два целочисленных операнда и один оператор (+, -, /, *)");
+            throw new Exception("Р’С‹СЂР°Р¶РµРЅРёРµ РЅРµ СѓРґРѕРІР»РµС‚РІРѕСЂСЏРµС‚ Р·Р°РґР°РЅРёСЋ - РґРІР° С†РµР»РѕС‡РёСЃР»РµРЅРЅС‹С… РѕРїРµСЂР°РЅРґР° Рё РѕРґРёРЅ РѕРїРµСЂР°С‚РѕСЂ (+, -, /, *)");
         }
         String part1 = blacks[0].toUpperCase().trim();
         String part2 = blacks[1].toUpperCase().trim();
         int number1 = romanToArabic(part1);
         int number2 = romanToArabic(part2);
 
-        //арабские
+        //Р°СЂР°Р±СЃРєРёРµ
         if (number1 < 1 && number2 < 1){
             number1 = Integer.parseInt(part1, 10);
             number2 = Integer.parseInt(part2, 10);
@@ -51,24 +51,24 @@ public class Main {
                 return "" + calculate(number1, number2, operation);
             }
             else{
-                throw new Exception("Калькулятор работает с числами только от 1 до 10");
+                throw new Exception("РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ СЂР°Р±РѕС‚Р°РµС‚ СЃ С‡РёСЃР»Р°РјРё С‚РѕР»СЊРєРѕ РѕС‚ 1 РґРѕ 10");
             }
         }
 
-        //римские
+        //СЂРёРјСЃРєРёРµ
         else if (number1 > 0 && number2 > 0) {
             int result = calculate(number1, number2, operation);
             if (result > 0 ) {
                 return arabicToRoman(result);
             }
             else {
-                throw new Exception("Результатом счета римских чисел не могут быть 0 и отрицательные числа");
+                throw new Exception("Р РµР·СѓР»СЊС‚Р°С‚РѕРј СЃС‡РµС‚Р° СЂРёРјСЃРєРёС… С‡РёСЃРµР» РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ 0 Рё РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рµ С‡РёСЃР»Р°");
             }
         }
 
-        //римские + арабские
+        //СЂРёРјСЃРєРёРµ + Р°СЂР°Р±СЃРєРёРµ
         else  {
-            throw new Exception("Нельзя проводить операции с арабскими и римскими цифрами одновременно");
+            throw new Exception("РќРµР»СЊР·СЏ РїСЂРѕРІРѕРґРёС‚СЊ РѕРїРµСЂР°С†РёРё СЃ Р°СЂР°Р±СЃРєРёРјРё Рё СЂРёРјСЃРєРёРјРё С†РёС„СЂР°РјРё РѕРґРЅРѕРІСЂРµРјРµРЅРЅРѕ");
         }
     }
 
